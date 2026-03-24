@@ -4,7 +4,8 @@ import Product from "../models/Product.model";
 
 config()
 const db = new Sequelize(process.env.DB_STRING_CONNECTION!, {
-    models: [Product]
+    models: [Product],
+    logging: false
 })
 
 export default db

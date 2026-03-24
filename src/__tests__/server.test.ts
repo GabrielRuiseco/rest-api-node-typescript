@@ -1,9 +1,18 @@
-describe('First tests', () => {
-    test('Should test 1+1 equals 2', () => {
-        expect(1 + 1).toBe(2)
-    })
+import request from 'supertest'
+import server from '../server'
 
-    test('Should test 1+1 not equals 3', () => {
-        expect(1 + 1).not.toBe(3)
+
+describe('GET /api', () => {
+    test('sould send back a json response', async () => {
+        const res = await request(server).get('/api')
+        //console.log(res)
+        expect(res.status).toBe(200)
+        expect(res.headers['content-type']).toMatch(/json/)
+        expect(res.body.msg).toBe('From Api')
+        //console.log(res.text)
+        //console.log(res.body.msg)
+
+        expect(res.status).not.toBe(404)
+        expect(res.body.message).not.toBe('from api')
     })
 })

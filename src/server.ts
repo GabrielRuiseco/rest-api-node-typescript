@@ -10,21 +10,21 @@ async function connectionDB() {
     try {
         await db.authenticate()
         await db.sync()
-        console.log(colors.blue('Conexión exitosa a la DB'))
+        //console.log(colors.blue('Conexión exitosa a la DB'))
     } catch (error) {
         console.log(error)
         console.log(colors.red.bold('Error al conectar a la DB'))
     }
 }
 
-await connectionDB()
+connectionDB()
 
 // Express Instance
 const server: Express = express()
 
 //read data from forms
 server.use(express.json())
-server.use('/api', router)
+server.use('/api/product', router)
 
 server.get('/api', (req, res) => {
     res.json({ msg: 'From Api' })

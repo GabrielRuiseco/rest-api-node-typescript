@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import Product from "../models/Product.model.js"
+import Product from "../models/Product.model"
 /*import { check, validationResult } from "express-validator"*/
 
 export const getProducts = async (req: Request, res: Response) => {
@@ -14,7 +14,7 @@ export const getProducts = async (req: Request, res: Response) => {
         res.json({ data: products })
 
     } catch (error) {
-        res.status(500).json({ Error: "500 Internal Server Error" })
+        res.status(500).json({ error: "500 Internal Server Error" })
     }
 }
 
@@ -31,7 +31,7 @@ export const getProductsById = async (req: Request<{ id: string }>, res: Respons
 
         res.json({ data: product })
     } catch (error) {
-        res.status(500).json({ Message: "500 Internal Server Error" })
+        res.status(500).json({ error: "500 Internal Server Error" })
     }
 }
 
@@ -50,9 +50,9 @@ export const createProduct = async (req: Request, res: Response) => {
     }*/
     try {
         const product = await Product.create(req.body)
-        res.json({ data: product })
+        res.status(201).json({ data: product })
     } catch (error) {
-        res.status(500).json({ Message: "500 Internal Server Error" })
+        res.status(500).json({ error: "500 Internal Server Error" })
     }
 
 
@@ -75,7 +75,7 @@ export const updateProduct = async (req: Request<{ id: string }>, res: Response)
 
         res.json({ data: product })
     } catch (error) {
-        res.status(500).json({ Message: "500 Internal Server Error" })
+        res.status(500).json({ error: "500 Internal Server Error" })
     }
 }
 
@@ -95,7 +95,7 @@ export const updateAvailability = async (req: Request<{ id: string }>, res: Resp
 
         res.json({ data: product })
     } catch (error) {
-        res.status(500).json({ Message: "500 Internal Server Error" })
+        res.status(500).json({ error: "500 Internal Server Error" })
     }
 }
 
@@ -114,6 +114,6 @@ export const deleteProduct = async (req: Request<{ id: string }>, res: Response)
 
         res.json({ data: "Deleted Product" })
     } catch (error) {
-        res.status(500).json({ Message: "500 Internal Server Error" })
+        res.status(500).json({ error: "500 Internal Server Error" })
     }
 }
