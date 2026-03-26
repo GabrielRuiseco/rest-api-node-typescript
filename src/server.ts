@@ -6,7 +6,7 @@ import colors from 'colors'
 
 
 //conect database
-async function connectionDB() {
+export async function connectionDB() {
     try {
         await db.authenticate()
         await db.sync()

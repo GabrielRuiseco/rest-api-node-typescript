@@ -45,15 +45,15 @@ describe('POST /api', () => {
 })
 
 
-describe('GET /api/products', () => {
+describe('GET /api/product', () => {
 
-    test('validate if api/products url exists', async () => {
+    test('validate if api/product url exists', async () => {
         const res = await request(server).get('/api/product')
         expect(res.status).toBe(200)
         expect(res.status).not.toBe(404)
     })
     //when the url does not exist the response will return a text not a JSON
-    test('GET a JSON response with products', async () => {
+    test('GET a JSON response with product', async () => {
         const res = await request(server).get('/api/product')
         expect(res.status).toBe(200)
         expect(res.header['content-type']).toMatch(/json/)
@@ -67,7 +67,7 @@ describe('GET /api/products', () => {
 })
 
 
-describe('GET /api/products/:id', () => {
+describe('GET /api/product/:id', () => {
     test('should return 404 response for non-existent product', async () => {
         const productId = 2000
         const res = await request(server).get(`/api/product/${productId}`)
@@ -79,7 +79,6 @@ describe('GET /api/products/:id', () => {
 
     test('should check a valid ID in the URL', async () => {
         const res = await request(server).get('/api/product/not-valid-url')
-        console.log(res.status)
         expect(res.status).toBe(400)
         expect(res.body).toHaveProperty('errors')
         expect(res.body.errors).toHaveLength(1)
@@ -93,7 +92,7 @@ describe('GET /api/products/:id', () => {
     })
 
 
-    describe('PUT /api/products/:id', () => {
+    describe('PUT /api/product/:id', () => {
 
         test('should check a valid ID in the URL', async () => {
             const res = await request(server)
@@ -103,7 +102,6 @@ describe('GET /api/products/:id', () => {
                     availability: true,
                     price: 300
                 })
-            console.log(res.status)
             expect(res.status).toBe(400)
             expect(res.body).toHaveProperty('errors')
             expect(res.body.errors).toHaveLength(1)
@@ -169,5 +167,68 @@ describe('GET /api/products/:id', () => {
             expect(res.status).not.toBe(400)
             expect(res.body).not.toHaveProperty('errors')
         })
+    })
+})
+
+
+describe('PATCH /api/product/:id', () => {
+    test('shuld return a 404 for non-existent product', async () => {
+        const productId = 2000
+        const res = await request(server)
+            .patch(`/api/product/${productId}`)
+            .send({
+                availability: true
+            })
+        expect(res.status).toBe(404)
+        expect(res.body.error).toBe('404 Product not found')
+
+        expect(res.status).not.toBe(200)
+        expect(res.body).not.toHaveProperty('data')
+    })
+
+    test('shuld update availability for a product', async () => {
+        const res = await request(server)
+            .patch(`/api/product/1`)
+            .send({
+                availability: false
+            })
+        expect(res.status).toBe(200)
+        expect(res.body).toHaveProperty('data')
+        expect(res.body.data.availability).toBe(false)
+
+        expect(res.status).not.toBe(400)
+        expect(res.status).not.toBe(404)
+        expect(res.body).not.toHaveProperty('errors')
+    })
+})
+
+
+describe('DELETE /api/product/:id', () => {
+    test('should check valid ID', async () => {
+        const res = await request(server).delete('/api/product/not-valid')
+        expect(res.status).toBe(400)
+        expect(res.body.errors).toBeTruthy()
+        expect(res.body.errors).toHaveLength(1)
+        expect(res.body.errors[0].msg).toBe('not valid ID')
+    })
+
+    test('should return 404 response for non-existent product', async () => {
+        const productId = 2000
+        const res = await request(server).delete(`/api/product/${productId}`)
+        expect(res.status).toBe(404)
+        expect(res.body.error).toBe('404 Product not found')
+
+        expect(res.status).not.toBe(200)
+        expect(res.body).not.toHaveProperty('data')
+    })
+
+    test('should delete a product', async () => {
+        const res = await request(server).delete(`/api/product/1`)
+        expect(res.status).toBe(200)
+        expect(res.body).toHaveProperty('data')
+        expect(res.body.data).toBe('Deleted Product')
+
+        expect(res.status).not.toBe(400)
+        expect(res.body).not.toHaveProperty('error')
     })
 })

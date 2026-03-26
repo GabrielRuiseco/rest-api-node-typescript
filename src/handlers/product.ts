@@ -3,36 +3,36 @@ import Product from "../models/Product.model"
 /*import { check, validationResult } from "express-validator"*/
 
 export const getProducts = async (req: Request, res: Response) => {
-    try {
-        const products = await Product.findAll({
-            /*order: [
-                ['id', 'DESC']
-            ], limit: 5,
-            attributes: { exclude: ['createdAt', 'updatedAt', 'availability'] }
-            ,*/
-        })
-        res.json({ data: products })
-
-    } catch (error) {
-        res.status(500).json({ error: "500 Internal Server Error" })
-    }
+    /*try {*/
+    const products = await Product.findAll({
+        /*order: [
+            ['id', 'DESC']
+        ], limit: 5,
+        attributes: { exclude: ['createdAt', 'updatedAt', 'availability'] }
+        ,*/
+    })
+    res.json({ data: products })
+    /*
+        } catch (error) {
+            res.status(500).json({ error: "500 Internal Server Error" })
+        }*/
 }
 
 export const getProductsById = async (req: Request<{ id: string }>, res: Response) => {
-    try {
-        const { id } = req.params
-        const product = await Product.findByPk(id)
+    /*try {*/
+    const { id } = req.params
+    const product = await Product.findByPk(id)
 
-        if (!product) {
-            return res.status(404).json({
-                error: '404 Product not found'
-            })
-        }
-
-        res.json({ data: product })
-    } catch (error) {
-        res.status(500).json({ error: "500 Internal Server Error" })
+    if (!product) {
+        return res.status(404).json({
+            error: '404 Product not found'
+        })
     }
+
+    res.json({ data: product })
+    /*} catch (error) {
+        res.status(500).json({ error: "500 Internal Server Error" })
+    }*/
 }
 
 export const createProduct = async (req: Request, res: Response) => {
@@ -48,72 +48,72 @@ export const createProduct = async (req: Request, res: Response) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ erros: errors.array() })
     }*/
-    try {
-        const product = await Product.create(req.body)
-        res.status(201).json({ data: product })
-    } catch (error) {
-        res.status(500).json({ error: "500 Internal Server Error" })
-    }
+    /* try {*/
+    const product = await Product.create(req.body)
+    res.status(201).json({ data: product })
+    /*} catch (error) {
+         res.status(500).json({ error: "500 Internal Server Error" })
+     }*/
 
 
 }
 
 export const updateProduct = async (req: Request<{ id: string }>, res: Response) => {
-    try {
-        const { id } = req.params
-        const product = await Product.findByPk(id)
+    /* try {*/
+    const { id } = req.params
+    const product = await Product.findByPk(id)
 
-        if (!product) {
-            return res.status(404).json({
-                error: '404 Product not found'
-            })
-        }
-
-        const updatedProduct = req.body
-        await product.update(updatedProduct)
-        await product.save()
-
-        res.json({ data: product })
-    } catch (error) {
-        res.status(500).json({ error: "500 Internal Server Error" })
+    if (!product) {
+        return res.status(404).json({
+            error: '404 Product not found'
+        })
     }
+
+    const updatedProduct = req.body
+    await product.update(updatedProduct)
+    await product.save()
+
+    res.json({ data: product })
+    /* } catch (error) {
+         res.status(500).json({ error: "500 Internal Server Error" })
+     }*/
 }
 
 export const updateAvailability = async (req: Request<{ id: string }>, res: Response) => {
-    try {
-        const { id } = req.params
-        const product = await Product.findByPk(id)
+    /*try {*/
+    const { id } = req.params
+    const product = await Product.findByPk(id)
 
-        if (!product) {
-            return res.status(404).json({
-                error: '404 Product not found'
-            })
-        }
-
-        product.availability = req.body.availability
-        await product.save()
-
-        res.json({ data: product })
-    } catch (error) {
-        res.status(500).json({ error: "500 Internal Server Error" })
+    if (!product) {
+        return res.status(404).json({
+            error: '404 Product not found'
+        })
     }
+
+    product.availability = req.body.availability
+    await product.save()
+
+    res.json({ data: product })
+    /*} catch (error) {
+        res.status(500).json({ error: "500 Internal Server Error" })
+    }*/
 }
 
 export const deleteProduct = async (req: Request<{ id: string }>, res: Response) => {
-    try {
-        const { id } = req.params
-        const product = await Product.findByPk(id)
+    /*try {*/
+    const { id } = req.params
+    const product = await Product.findByPk(id)
 
-        if (!product) {
-            return res.status(404).json({
-                error: '404 Product not found'
-            })
-        }
-
-        await product.destroy()
-
-        res.json({ data: "Deleted Product" })
-    } catch (error) {
-        res.status(500).json({ error: "500 Internal Server Error" })
+    if (!product) {
+        return res.status(404).json({
+            error: '404 Product not found'
+        })
     }
+
+    await product.destroy()
+
+    res.json({ data: "Deleted Product" })
+    /*} catch (error) {
+        res.status(500).json({ error: "500 Internal Server Error" })
+    }*/
 }
