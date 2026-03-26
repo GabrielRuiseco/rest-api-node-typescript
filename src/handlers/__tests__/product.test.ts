@@ -1,5 +1,6 @@
 import request from 'supertest'
 import server from '../../server'
+import { response } from 'express'
 
 
 describe('POST /api', () => {
@@ -51,7 +52,7 @@ describe('GET /api/products', () => {
         expect(res.status).toBe(200)
         expect(res.status).not.toBe(404)
     })
-
+    //when the url does not exist the response will return a text not a JSON
     test('GET a JSON response with products', async () => {
         const res = await request(server).get('/api/product')
         expect(res.status).toBe(200)
@@ -62,5 +63,111 @@ describe('GET /api/products', () => {
         expect(res.status).not.toBe(404)
         expect(res.body).not.toHaveProperty('error')
         expect(res.body).not.toHaveProperty('errors')
+    })
+})
+
+
+describe('GET /api/products/:id', () => {
+    test('should return 404 response for non-existent product', async () => {
+        const productId = 2000
+        const res = await request(server).get(`/api/product/${productId}`)
+        expect(res.status).toBe(404)
+        expect(res.status).not.toBe(200)
+        expect(res.body).toHaveProperty('error')
+        expect(res.body.error).toBe('404 Product not found')
+    })
+
+    test('should check a valid ID in the URL', async () => {
+        const res = await request(server).get('/api/product/not-valid-url')
+        console.log(res.status)
+        expect(res.status).toBe(400)
+        expect(res.body).toHaveProperty('errors')
+        expect(res.body.errors).toHaveLength(1)
+        expect(res.body.errors[0].msg).toBe('not valid ID')
+    })
+
+    test('get a JSON response for a single product', async () => {
+        const res = await request(server).get('/api/product/1')
+        expect(res.status).toBe(200)
+        expect(res.body).toHaveProperty('data')
+    })
+
+
+    describe('PUT /api/products/:id', () => {
+
+        test('should check a valid ID in the URL', async () => {
+            const res = await request(server)
+                .put('/api/product/not-valid-url')
+                .send({
+                    name: "Mouse-PUT-Test",
+                    availability: true,
+                    price: 300
+                })
+            console.log(res.status)
+            expect(res.status).toBe(400)
+            expect(res.body).toHaveProperty('errors')
+            expect(res.body.errors).toHaveLength(1)
+            expect(res.body.errors[0].msg).toBe('not valid ID')
+        })
+
+        test('shuld complete the validations when updating a product', async () => {
+            const res = await request(server)
+                .put('/api/product/1')
+                .send({})
+            expect(res.status).toBe(400)
+            expect(res.body.errors).toBeTruthy()
+            expect(res.body.errors).toHaveLength(5)
+
+            expect(res.status).not.toBe(200)
+            expect(res.body).not.toHaveProperty('data')
+        })
+
+        test('shuld validate price greater than 0 updating a product', async () => {
+            const res = await request(server)
+                .put('/api/product/1')
+                .send({
+                    name: "Mouse-PUT-Test",
+                    availability: true,
+                    price: -300
+                })
+            expect(res.status).toBe(400)
+            expect(res.body.errors).toBeTruthy()
+            expect(res.body.errors).toHaveLength(1)
+            expect(res.body.errors[0].msg).toBe('Price not valid')
+
+            expect(res.status).not.toBe(200)
+            expect(res.body).not.toHaveProperty('data')
+        })
+
+        test('shuld return a 404 for non-existent product', async () => {
+            const productId = 2000
+            const res = await request(server)
+                .put(`/api/product/${productId}`)
+                .send({
+                    name: "Mouse-PUT-Test",
+                    availability: true,
+                    price: 300
+                })
+            expect(res.status).toBe(404)
+            expect(res.body.error).toBe('404 Product not found')
+
+            expect(res.status).not.toBe(200)
+            expect(res.body).not.toHaveProperty('data')
+        })
+
+        test('shuld update an existing product with valid data', async () => {
+            const res = await request(server)
+                .put(`/api/product/1`)
+                .send({
+                    name: "Mouse-PUT-Test",
+                    availability: true,
+                    price: 300
+                })
+            expect(res.status).toBe(200)
+            expect(res.body).toHaveProperty('data')
+
+            expect(res.status).not.toBe(400)
+            expect(res.body).not.toHaveProperty('errors')
+        })
     })
 })

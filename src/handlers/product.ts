@@ -25,7 +25,7 @@ export const getProductsById = async (req: Request<{ id: string }>, res: Respons
 
         if (!product) {
             return res.status(404).json({
-                Error: '404 Producto No Encontrado'
+                error: '404 Product not found'
             })
         }
 
@@ -65,7 +65,7 @@ export const updateProduct = async (req: Request<{ id: string }>, res: Response)
 
         if (!product) {
             return res.status(404).json({
-                Error: '404 Producto No Encontrado'
+                error: '404 Product not found'
             })
         }
 
@@ -86,7 +86,7 @@ export const updateAvailability = async (req: Request<{ id: string }>, res: Resp
 
         if (!product) {
             return res.status(404).json({
-                Error: '404 Producto No Encontrado'
+                error: '404 Product not found'
             })
         }
 
@@ -106,7 +106,7 @@ export const deleteProduct = async (req: Request<{ id: string }>, res: Response)
 
         if (!product) {
             return res.status(404).json({
-                Error: '404 Producto No Encontrado'
+                error: '404 Product not found'
             })
         }
 
