@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1774566476067" clover="3.2.0">
-  <project timestamp="1774566476067" name="All files">
-    <metrics statements="86" coveredstatements="86" conditionals="10" coveredconditionals="10" methods="11" coveredmethods="11" elements="107" coveredelements="107" complexity="0" loc="86" ncloc="86" packages="5" files="6" classes="6"/>
+<coverage generated="1774719373034" clover="3.2.0">
+  <project timestamp="1774719373034" name="All files">
+    <metrics statements="93" coveredstatements="93" conditionals="10" coveredconditionals="10" methods="10" coveredmethods="10" elements="113" coveredelements="113" complexity="0" loc="93" ncloc="93" packages="5" files="7" classes="7"/>
     <package name="src">
-      <metrics statements="32" coveredstatements="32" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
-      <file name="router.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\REST_API_NODE_SERVER\src\router.ts">
+      <metrics statements="33" coveredstatements="33" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <file name="router.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\FULLSTACK_NODE_REACT_TYPESCRIPT\SERVER\src\router.ts">
         <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
@@ -12,40 +12,41 @@
         <line num="4" count="2" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
-        <line num="19" count="3" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="28" count="5" type="stmt"/>
-        <line num="34" count="2" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
-        <line num="47" count="2" type="stmt"/>
+        <line num="220" count="2" type="stmt"/>
+        <line num="221" count="2" type="stmt"/>
+        <line num="226" count="2" type="stmt"/>
+        <line num="230" count="3" type="stmt"/>
+        <line num="234" count="2" type="stmt"/>
+        <line num="239" count="5" type="stmt"/>
+        <line num="245" count="2" type="stmt"/>
+        <line num="252" count="2" type="stmt"/>
+        <line num="258" count="2" type="stmt"/>
       </file>
-      <file name="server.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\REST_API_NODE_SERVER\src\server.ts">
-        <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="server.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\FULLSTACK_NODE_REACT_TYPESCRIPT\SERVER\src\server.ts">
+        <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
-        <line num="10" count="3" type="stmt"/>
-        <line num="11" count="3" type="stmt"/>
-        <line num="12" count="2" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="23" count="2" type="stmt"/>
-        <line num="26" count="2" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
         <line num="29" count="2" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
         <line num="34" count="2" type="stmt"/>
       </file>
     </package>
     <package name="src.config">
-      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="db.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\REST_API_NODE_SERVER\src\config\db.ts">
+      <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="db.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\FULLSTACK_NODE_REACT_TYPESCRIPT\SERVER\src\config\db.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
@@ -54,10 +55,19 @@
         <line num="6" count="2" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
       </file>
+      <file name="swagger.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\FULLSTACK_NODE_REACT_TYPESCRIPT\SERVER\src\config\swagger.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+      </file>
     </package>
     <package name="src.handlers">
       <metrics statements="37" coveredstatements="37" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
-      <file name="product.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\REST_API_NODE_SERVER\src\handlers\product.ts">
+      <file name="product.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\FULLSTACK_NODE_REACT_TYPESCRIPT\SERVER\src\handlers\product.ts">
         <metrics statements="37" coveredstatements="37" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="6"/>
         <line num="2" count="2" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
@@ -100,7 +110,7 @@
     </package>
     <package name="src.midleware">
       <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-      <file name="productMiddleware.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\REST_API_NODE_SERVER\src\midleware\productMiddleware.ts">
+      <file name="productMiddleware.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\FULLSTACK_NODE_REACT_TYPESCRIPT\SERVER\src\midleware\productMiddleware.ts">
         <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
@@ -112,7 +122,7 @@
     </package>
     <package name="src.models">
       <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="Product.model.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\REST_API_NODE_SERVER\src\models\Product.model.ts">
+      <file name="Product.model.ts" path="C:\Users\Gabriel\Documents\2026 Project\React TS\FULLSTACK_NODE_REACT_TYPESCRIPT\SERVER\src\models\Product.model.ts">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="3" type="stmt"/>
         <line num="7" count="3" type="stmt"/>

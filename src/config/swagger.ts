@@ -1,4 +1,5 @@
 import swaggerJSDoc from "swagger-jsdoc";
+import { SwaggerUiOptions } from "swagger-ui-express";
 
 const options: swaggerJSDoc.Options = {
     swaggerDefinition: {
@@ -17,4 +18,17 @@ const options: swaggerJSDoc.Options = {
 }
 
 const swaggerSpec = swaggerJSDoc(options)
+const swaggerUIiOptions: SwaggerUiOptions = {
+    customCss:
+        `.topbar-wrapper .link {
+            content: url('https://thumbs.dreamstime.com/b/icono-o-logotipo-superior-de-documento-en-la-l%C3%ADnea-estilo-97715806.jpg');
+            height: 120px;
+            width: 50px;
+        }`,
+    customSiteTitle: 'Documentation REST API Express / Typescript'
+}
+
 export default swaggerSpec
+export {
+    swaggerUIiOptions
+}

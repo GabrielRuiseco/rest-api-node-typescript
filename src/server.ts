@@ -3,8 +3,9 @@ import type { Express } from 'express';
 import router from './router';
 import db from './config/db';
 import colors from 'colors'
+import cors, { CorsOptions } from 'cors'
 import swaggerUi from "swagger-ui-express"
-import swaggerSpec from './config/swagger';
+import swaggerSpec, { swaggerUIiOptions } from './config/swagger';
 
 
 //conect database
@@ -24,11 +25,24 @@ connectionDB()
 // Express Instance
 const server: Express = express()
 
+//allow connections
+const corsOptions: CorsOptions = {
+    origin: function (origin, callback) {
+        if (origin === process.env.FRONTEND_URL) {
+            callback(null, true)
+        } else {
+            callback(new Error('CORS Error'))
+        }
+    }
+}
+
+server.use(cors(corsOptions))
+
 //read data from forms
 server.use(express.json())
 server.use('/api/product', router)
 
 //Docs
-server.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+server.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerUIiOptions))
 
 export default server
