@@ -4,6 +4,7 @@ import router from './router';
 import db from './config/db';
 import colors from 'colors'
 import cors, { CorsOptions } from 'cors'
+import morgan from 'morgan'
 import swaggerUi from "swagger-ui-express"
 import swaggerSpec, { swaggerUIiOptions } from './config/swagger';
 
@@ -40,6 +41,9 @@ server.use(cors(corsOptions))
 
 //read data from forms
 server.use(express.json())
+
+server.use(morgan('dev'))
+
 server.use('/api/product', router)
 
 //Docs
